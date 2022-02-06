@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Article, Articles } from '../models/article.dto';
+import { ServerMessage } from '../models/server-message.dto';
 import { ArticleService } from '../services/article.service';
 import { UtilitiesService } from '../services/utilities.service';
 
@@ -14,14 +15,14 @@ export class ArticleComponent implements OnInit {
   constructor(private util: UtilitiesService, private articleService: ArticleService, private route: ActivatedRoute) { }
 
   article: Article = {} as Article;
-  error = false;
+  error = {} as ServerMessage;
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       if (params['slug']) {
         this.articleService.getArticle(params['slug']).subscribe( {
           next: (data) => this.article = data.article,
-          error: (e) => this.error = true,
+          error: (e) => this.error = e.error,
           complete: () => {} 
         });
       }

@@ -1,1 +1,35 @@
-<p>login works!</p>
+<!-- Default form login -->
+<form class="text-center border border-light" >
+
+    <p class="h4 mb-4">Log in</p>
+
+    <!-- Email -->
+    <input type="email" id="fieldEmail" class="form-control mb-4" placeholder="E-mail">
+
+    <!-- Password -->
+    <input type="password" id="fieldPassword" class="form-control mb-4" placeholder="Password">
+
+    <!-- 
+    <div class="d-flex justify-content-around">
+        <div>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+            </div>
+        </div>
+        <div>
+            <a href="">Forgot password?</a>
+        </div>
+    </div>
+    -->
+
+    <!-- Sign in button -->
+    <span class="btn btn-info btn-block my-4" (click)="authenticate()">Sign in</span>
+
+    <!-- Register -->
+    <p>Not a member?
+        <a [routerLink]="['/user/signup']">Sign up</a>
+    </p>
+
+</form>
+<!-- Default form login -->
