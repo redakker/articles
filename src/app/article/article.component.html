@@ -1,0 +1,22 @@
+<div *ngIf="!error">
+    <h1>{{article.title}}</h1>
+    <div class="float-right backLink">
+        <small>
+            <a [routerLink]="['/article']" class="text-secondary">
+                <i class="fa fa-caret-left"></i>
+                &nbsp;back
+            </a>
+        </small>
+    </div>
+
+    <img class="card-img-top mb-3" [src]="'https://loremflickr.com/600/200/' + getPictureKeyWord(article)">
+
+    <div>
+        <div class="mb-1">{{article.description}}</div>
+        <div>{{article.body}}</div>
+    </div>
+</div>
+
+<div *ngIf="error" style="padding-top: 30px;">
+   <display-message level="warning" message="Sorry, we have not found this article."></display-message>
+</div>
