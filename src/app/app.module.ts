@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -14,6 +14,8 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 
 @NgModule({
@@ -33,9 +35,14 @@ import { AuthGuardService } from './services/auth-guard.service';
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
-  providers: [HttpClient, AuthGuardService],
+  providers: [
+    HttpClient,
+    AuthGuardService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

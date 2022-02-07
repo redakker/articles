@@ -5,7 +5,7 @@ export interface Articles {
 	articlesCount: number;
 }
 
-export interface ArticleData {
+export interface ArticleContainer {
     article: Article;
 }
 
