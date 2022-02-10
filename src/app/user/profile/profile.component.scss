@@ -1,0 +1,13 @@
+.userImage img{
+    width: 100px;
+    transition: transform 0.5s linear;
+    margin-right: 30px;
+}
+
+.userImage {
+    margin-top: -99px;
+    overflow: hidden;
+    display: inline-block;
+    max-height: 150px;
+    margin-bottom: 10px;
+}

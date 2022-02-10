@@ -1,4 +1,4 @@
-<div *ngIf="!error.statusCode">
+<div *ngIf="!message">
     <h1>{{article.title}}</h1>
     <div class="float-right backLink">
         <small>
@@ -17,6 +17,6 @@
     </div>
 </div>
 
-<div *ngIf="error.statusCode" style="padding-top: 30px;">
-   <display-message level="warning" message="{{error.message}}"></display-message>
+<div *ngIf="message" style="padding-top: 30px;">
+   <display-message [message]="message"></display-message>
 </div>

@@ -1,22 +1,43 @@
-<!-- Default form login -->
-<form class="text-center border border-light" action="#!">
+<div *ngIf="signedUp">
+    <p class="h4 mb-4">Welcome</p>
+    <display-message [message]="message"></display-message>
+    <div class="d-flex justify-content-center">Please log in&nbsp;<a [routerLink]="['/user/login']">here!</a></div>
+</div>
+
+<div *ngIf="!signedUp">
 
     <p class="h4 mb-4">Sign up</p>
 
-    <!-- Username -->
-    <input type="text" id="fieldUsername" class="form-control mb-4" placeholder="Username">
+    <div *ngIf="message" class="mb-2">
+        <display-message [message]="message"></display-message>
+    </div>
 
-    <!-- Email -->
-    <input type="email" id="fieldEmail" class="form-control mb-4" placeholder="E-mail">
+    <form class="text-center border border-light" [formGroup]="form" >
 
-    <!-- Password -->
-    <input type="password" id="fieldPassword" class="form-control mb-4" placeholder="Password">
+        <!-- Username -->
+        <input type="text" formControlName="username" class="form-field form-control" [ngClass]="{'border border-danger' : fieldHasError('username')}" placeholder="Username">
+        <div *ngIf="fieldHasError('username')" class="float-left text-danger"><small>Name field is required!</small></div>
+        <div class="float-none mb-2">&nbsp;</div>
 
-    <!-- Password Again -->
-    <input type="password" id="fieldPasswordAgain" class="form-control mb-4" placeholder="Password again">
+        <!-- Email -->
+        <input type="email" formControlName="email" class="form-field form-control" [ngClass]="{'border border-danger' : fieldHasError('email')}" placeholder="E-mail">
+        <div *ngIf="fieldHasError('email')" class="float-left text-danger"><small>Please add a valid e-mail address!</small></div>
+        <div class="float-none mb-2">&nbsp;</div>
+        
+        <!-- Password -->
+        <input type="password" formControlName="password" class="form-field form-control" [ngClass]="{'border border-danger' : fieldHasError('password')}" placeholder="Password">
+        <div *ngIf="fieldHasError('password')" class="float-left text-danger"><small>Password is required!</small></div>
+        <div class="float-none mb-2">&nbsp;</div>
 
-    <!-- Sign in button -->
-    <button class="btn btn-info btn-block" type="submit">Sign up</button>
+        <!-- Password Again -->
+        <input type="password" formControlName="passVerify" class="form-field form-control" [ngClass]="{'border border-danger' : fieldHasError('passVerify')}" placeholder="Password again">
+        <div *ngIf="fieldHasError('passVerify')" class="float-left text-danger"><small>Password verification is required!</small></div>
+        <div class="float-none">&nbsp;</div>
+        <div *ngIf="passwordMatch()" class="float-left text-danger"><small>Two passwords do not match!</small></div>
+        <div class="float-none mb-2">&nbsp;</div>
 
-</form>
-<!-- Default form login -->
+        <!-- Sign in button -->
+        <button class="btn btn-info btn-block" (click)="signup()" [disabled]="!form.dirty || !form.valid">Sign up</button>
+
+    </form>
+</div>

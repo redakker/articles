@@ -1,4 +1,4 @@
-import { User } from "./user.dto";
+import { User } from "./user.model";
 
 export interface Articles {
 	articles: Article[];
@@ -29,4 +29,15 @@ export interface ArticleComment {
 	body: string;
 	articleId: number;
 	authorId: number
+}
+
+export interface CommentDTO {
+	comments: Comment[];
+}
+
+export interface Comment {
+	id: number;
+	created: number;
+	body: string;
+	author: User;
 }

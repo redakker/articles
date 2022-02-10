@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Article, Articles } from '../models/article.dto';
-import { ServerMessage } from '../models/server-message.dto';
+import { Article, Articles, CommentDTO } from '../models/article.model';
+import { ServerMessage } from '../models/server-message.model';
 import { ArticleService } from '../services/article.service';
 import { UtilitiesService } from '../services/utilities.service';
 
@@ -19,13 +18,15 @@ export class ArticlesComponent implements OnInit {
 
   articles: Article[] = [];
   slug: string = '';
-  error = {} as ServerMessage;
+  message: ServerMessage;
 
   ngOnInit(): void {
     this.articleService.getArticles().subscribe(
     {
-      next: (data) => this.articles = data.articles,
-      error: (e) => this.error = e.error,
+      next: (data) => {
+        this.articles = data.articles;
+      },
+      error: (e) => this.message = e.error,
       complete: () => {} 
     });
   }

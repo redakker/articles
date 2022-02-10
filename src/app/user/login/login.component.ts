@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ServerMessage } from '../../models/server-message.dto';
+import { ServerMessage } from '../../models/server-message.model';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-  error = {} as ServerMessage;
+  message: ServerMessage;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,12 +36,15 @@ export class LoginComponent implements OnInit {
   }
 
   authenticate() {
-    this.error = {} as ServerMessage;
-
     this.authServiceService.authenticate(this.form.get('email')?.value, this.form.get('password')?.value).subscribe(
       {
         next: (data) => { this.authServiceService.storeUser(data.user); this.navigateToProfile(); },
-        error: (e) => this.error.message = "Invalid username or password!",
+        // TODO: change the server object to produce unified error message object
+        // See in the login component why
+        error: (e) => {
+          console.log(e);
+          this.message = {statusCode: e.status, message: "Invalid username or password!"}
+        },
         complete: () => {} 
       }
     );

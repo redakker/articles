@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Article } from '../models/article.dto';
+import { Article } from '../models/article.model';
 
 @Component({
   selector: 'user-details',

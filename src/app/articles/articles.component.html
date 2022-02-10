@@ -1,7 +1,9 @@
-<h1 *ngIf="!error.statusCode && articles.length">Latest articles</h1>
-<div class="d-flex justify-content-center">
-    <div *ngIf="articles.length">
-        <div *ngFor="let article of articles" class="card articleCard">
+<h1 *ngIf="!message && articles.length">Latest articles</h1>
+
+<div *ngIf="articles.length" class="container mx-auto mt-4">
+  <div class="row">
+    <div *ngFor="let article of articles" class="col-md-4">
+        <div class="card" style="width: 18rem;">
             <a [routerLink]="['/article', article.slug]">
                 <img class="card-img-top" [src]="'https://loremflickr.com/320/240/' + getPictureKeyWord(article)" alt="Card image cap">
             </a>
@@ -9,18 +11,24 @@
                 <a [routerLink]="['/article', article.slug]">
                     <h5 class="card-title">{{article.title}}</h5>
                 </a>
-                <p class="card-text">{{article.description}}</p>
+                <p class="card-text">
+                    {{article.description}}
+                </p>
+                 
                 <a [routerLink]="['/article', article.slug]" class="btn btn-sm btn-info"><i class="fa fa-newspaper-o"></i> Open</a>
                 <user-details class="author" [article]="article"></user-details>
             </div>
         </div>
     </div>
-
-    <div *ngIf="!error.statusCode && !articles.length">
-        <display-message level="warning" message="Sorry, there is no articles available."></display-message>
-    </div>
-
-    <div *ngIf="error.statusCode">
-        <display-message level="warning" message="{{error.message}}"></display-message>
-    </div>
+  </div>
 </div>
+
+
+<div *ngIf="!message && !articles.length">
+    <display-message [message]="{message: 'Sorry, there is no articles available.', statusCode: 50}"></display-message>
+</div>
+
+<div *ngIf="message">
+    <display-message [message]="message"></display-message>
+</div>
+

@@ -1,4 +1,4 @@
-export interface UserContainer {
+export interface UserDTO {
   user: User;
 }
 
@@ -9,6 +9,7 @@ export interface User {
   bio: string;
   image: string;
   token: string;
+  password: string;
 }
 
 export interface UserToken {
