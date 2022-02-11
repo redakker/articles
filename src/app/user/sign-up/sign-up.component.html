@@ -1,18 +1,12 @@
 <div *ngIf="signedUp">
     <p class="h4 mb-4">Welcome</p>
-    <display-message [message]="message"></display-message>
     <div class="d-flex justify-content-center">Please log in&nbsp;<a [routerLink]="['/user/login']">here!</a></div>
 </div>
 
 <div *ngIf="!signedUp">
 
     <p class="h4 mb-4">Sign up</p>
-
-    <div *ngIf="message" class="mb-2">
-        <display-message [message]="message"></display-message>
-    </div>
-
-    <form class="text-center border border-light" [formGroup]="form" >
+      <form class="text-center border border-light" [formGroup]="form" >
 
         <!-- Username -->
         <input type="text" formControlName="username" class="form-field form-control" [ngClass]="{'border border-danger' : fieldHasError('username')}" placeholder="Username">

@@ -5,6 +5,7 @@ import { OK_200 } from 'src/app/app.constants';
 import { ServerMessage } from 'src/app/models/server-message.model';
 import { User } from 'src/app/models/user.model';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { UtilitiesService } from 'src/app/services/utilities.service';
 import { ConfirmedValidator } from '../user.component';
 
 @Component({
@@ -15,17 +16,16 @@ import { ConfirmedValidator } from '../user.component';
 export class SignUpComponent implements OnInit {
 
   form: FormGroup;
-  message: ServerMessage;
   signedUp = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private authServiceService: AuthServiceService,
-    private router: Router
+    private util: UtilitiesService
   ) {
     this.form = this.formBuilder.group({
-        username: [''],
-        email: [''],
+        username: ['', Validators.required],
+        email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
         password: ['', Validators.required],
         passVerify: ['', Validators.required]
     },
@@ -62,14 +62,12 @@ export class SignUpComponent implements OnInit {
 
     this.authServiceService.signUp(user).subscribe(
       {
-        next: (data) => { this.signedUp = true; this.message.statusCode = OK_200; this.message.message="Sign up was successful!" },
+        next: (data) => { this.signedUp = true; this.util.handleSuccess('Sign up was successful!') },
         // TODO: change the server object to produce unified error message object
         // Error message object sould be the same object structure bot in client and serve-side
         // then this format can be used
         // error: (e) => this.error = e.error,
-        error: (e) => { 
-          this.message  = {statusCode: e.status, message: e.error.errors.username}
-        },
+        error: (e) => this.util.handleError(e, e.error?.errors?.username),
         complete: () => {} 
       }
     );

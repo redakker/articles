@@ -1,10 +1,6 @@
 <div *ngIf="!isLoggedIn()">
     <p class="h4 mb-4">Log in</p>
 
-    <div *ngIf="message" class="mb-2">
-        <display-message [message]="message"></display-message>
-    </div>
-
     <form class="text-center border border-light" [formGroup]="form" >
 
         <!-- Email -->

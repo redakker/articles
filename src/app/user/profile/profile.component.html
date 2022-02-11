@@ -1,9 +1,5 @@
 <p class="h4 mb-4">Profile</p>
 
-<div *ngIf="message" class="mb-2">
-    <display-message [message]="message"></display-message>
-</div>
-
 <form class="border border-light" [formGroup]="form" >
     <!-- Username -->
     <input type="text" readonly formControlName="username" class="form-field form-control" [ngClass]="{'border border-danger' : fieldHasError('username')}" placeholder="Username">

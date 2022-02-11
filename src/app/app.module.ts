@@ -16,6 +16,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -36,7 +37,9 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    ToastNoAnimationModule.forRoot()
   ],
   providers: [
     HttpClient,

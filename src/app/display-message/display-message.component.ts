@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { ServerMessage } from '../models/server-message.model';
 
 @Component({
@@ -14,7 +13,6 @@ export class DisplayMessageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // this.toastr.success('Hello world!', 'Toastr fun!');
   }
 
 }

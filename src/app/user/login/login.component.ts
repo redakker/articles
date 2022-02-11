@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServerMessage } from '../../models/server-message.model';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
+import { UtilitiesService } from 'src/app/services/utilities.service';
 
 @Component({
   selector: 'login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authServiceService: AuthServiceService,
+    private util: UtilitiesService,
     private router: Router
   ) {
     this.form = this.formBuilder.group({
@@ -41,10 +43,7 @@ export class LoginComponent implements OnInit {
         next: (data) => { this.authServiceService.storeUser(data.user); this.navigateToProfile(); },
         // TODO: change the server object to produce unified error message object
         // See in the login component why
-        error: (e) => {
-          console.log(e);
-          this.message = {statusCode: e.status, message: "Invalid username or password!"}
-        },
+        error: (e) => this.util.handleError(e),
         complete: () => {} 
       }
     );

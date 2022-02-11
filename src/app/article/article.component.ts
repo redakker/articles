@@ -12,7 +12,11 @@ import { UtilitiesService } from '../services/utilities.service';
 })
 export class ArticleComponent implements OnInit {
 
-  constructor(private util: UtilitiesService, private articleService: ArticleService, private route: ActivatedRoute) { }
+  constructor(
+    private util: UtilitiesService,
+    private articleService: ArticleService,
+    private route: ActivatedRoute
+  ) { }
 
   article: Article = {} as Article;
   message: ServerMessage;
@@ -22,7 +26,7 @@ export class ArticleComponent implements OnInit {
       if (params['slug']) {
         this.articleService.getArticle(params['slug']).subscribe( {
           next: (data) => this.article = data.article,
-          error: (e) => this.message = e.error,
+          error: (e) => this.util.handleError(e),
           complete: () => {} 
         });
       }

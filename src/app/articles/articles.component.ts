@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Article, Articles, CommentDTO } from '../models/article.model';
 import { ServerMessage } from '../models/server-message.model';
 import { ArticleService } from '../services/article.service';
@@ -26,7 +27,7 @@ export class ArticlesComponent implements OnInit {
       next: (data) => {
         this.articles = data.articles;
       },
-      error: (e) => this.message = e.error,
+      error: (e) => this.util.handleError(e),
       complete: () => {} 
     });
   }
