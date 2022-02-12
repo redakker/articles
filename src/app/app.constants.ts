@@ -7,3 +7,4 @@ export const OK_50 = 50; // Warning message
 export const CUT_BODY_AFTER = 50 // Cut the body text for admin display
 
 
+

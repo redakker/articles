@@ -44,7 +44,6 @@ export class ArticleModalComponent implements OnInit {
 
   save() {
     let article: Article = this.form.getRawValue() as Article;
-    console.log(article);
     this.modal.close(article);
   }
 

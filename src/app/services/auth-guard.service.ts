@@ -12,14 +12,14 @@ export class AuthGuardService implements CanActivate {
     private authService: AuthService
   ) { }
   
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(route: ActivatedRouteSnapshot): boolean {
 
     if (this.authService.isLoggedin()) {
       return true;
     }
 
     // not logged in so redirect to login page with the return url
-    this.router.navigate(['/user/login'], { queryParams: { returnUrl: state.url } });
+    this.router.navigate(['/user/login']);
     return false;
   }
 }

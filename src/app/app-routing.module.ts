@@ -10,7 +10,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { UserComponent } from './user/user.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'articles', component: ArticlesComponent },
   { path: 'article/:slug', component: ArticleComponent },
   { path: 'user', component: UserComponent, 
