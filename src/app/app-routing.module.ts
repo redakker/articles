@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArticleComponent } from './article/article.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { EditArticleComponent } from './user/edit-article/edit-article.component';
+import { UserListComponent } from './user/list/user-list.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
@@ -15,6 +17,8 @@ const routes: Routes = [
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+      { path: 'list', component: UserListComponent, canActivate: [AuthGuardService]  },
+      { path: 'articlelist', component: EditArticleComponent, canActivate: [AuthGuardService]  },
       { path: 'signup', component: SignUpComponent },
     ]
   },

@@ -17,6 +17,10 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
+import { UserListComponent } from './user/list/user-list.component';
+import { AreYouSureComponent } from './modals/are-you-sure/are-you-sure.component';
+import { ArticleModalComponent } from './modals/article-modal/article-modal.component';
+import { EditArticleComponent } from './user/edit-article/edit-article.component';
 
 
 @NgModule({
@@ -29,7 +33,11 @@ import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
     UserComponent,
     SignUpComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserListComponent,
+    AreYouSureComponent,
+    ArticleModalComponent,
+    EditArticleComponent
   ],
   imports: [
     BrowserModule,

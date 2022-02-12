@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Article list</h2>
+    <p>Here is your articles</p>
+    <button class="btn btn-sm btn-info float-right mb-2" (click)="newArticle()">New Article</button>     
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-info">Title</th>
+          <th class="text-info">Description</th>
+          <th class="text-info">Part</th>
+          <th class="text-info">Last modification</th>
+          <th class="text-danger text-center">Edit</th>
+          <th class="text-danger text-center">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let article of articles">
+        <tr *ngIf="article.author.id ==  me?.id">
+          <td>{{article.title}}</td>
+          <td>{{article.description}}</td>
+          <td>{{cutText(article.body)}}</td>
+          <td>{{getDate(article)}}</td>
+          <td class="text-center">
+            <i class="fa fa-pencil text-warning hand" (click)="editArticle(article)"></i>
+          </td>
+          <td class="text-center">
+            <i class="fa fa-trash text-danger hand" (click)="areYouSure(article)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServerMessage } from '../../models/server-message.model';
-import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { UtilitiesService } from 'src/app/services/utilities.service';
 
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authServiceService: AuthServiceService,
+    private authServiceService: AuthService,
     private util: UtilitiesService,
     private router: Router
   ) {

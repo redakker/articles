@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthServiceService } from './services/auth-service.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthServiceService
+    private authService: AuthService
   ) {}
 
   isLoggedin() {

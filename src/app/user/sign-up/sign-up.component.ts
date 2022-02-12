@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { OK_200 } from 'src/app/app.constants';
 import { ServerMessage } from 'src/app/models/server-message.model';
 import { User } from 'src/app/models/user.model';
-import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { UtilitiesService } from 'src/app/services/utilities.service';
 import { ConfirmedValidator } from '../user.component';
 
@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authServiceService: AuthServiceService,
+    private authServiceService: AuthService,
     private util: UtilitiesService
   ) {
     this.form = this.formBuilder.group({

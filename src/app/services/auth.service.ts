@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { API_ENDPOINT, httpOptions, TOKEN_NAME } from '../app.constants';
+import { API_ENDPOINT, TOKEN_NAME } from '../app.constants';
 import { User, UserDTO, UserToken } from '../models/user.model';
 import * as _ from "lodash";
 import * as moment from 'moment';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthServiceService {
+export class AuthService {
 
   helper = new JwtHelperService();
 
@@ -21,20 +21,11 @@ export class AuthServiceService {
   ) { }
 
   authenticate(email: string, password: string): Observable<UserDTO> {
-    return this.http.post<UserDTO>(API_ENDPOINT + '/login', {email: email, password: password}, httpOptions);
+    return this.http.post<UserDTO>(API_ENDPOINT + '/login', {email: email, password: password});
   }
 
   storeUser(user: User) {
       localStorage.setItem(TOKEN_NAME, user.token);
-      console.log(this.isLoggedin());
-  }
-
-  getUser(): Observable<UserDTO> {
-    return this.http.get<UserDTO>(API_ENDPOINT + '/user', httpOptions);
-  }
-
-  updateUser(user: User): Observable<UserDTO> {
-    return this.http.put<UserDTO>(API_ENDPOINT + '/user', user, httpOptions);
   }
 
   isLoggedin() {
@@ -55,11 +46,11 @@ export class AuthServiceService {
   }
 
   signUp(user: User): Observable<User> {
-    return this.http.post<User>(API_ENDPOINT + '/users', user, httpOptions);
+    return this.http.post<User>(API_ENDPOINT + '/users', user);
   }
 
-  deleteUser(user: User) {
-    
+  getMe(): Observable<UserDTO> {
+    return this.http.get<UserDTO>(API_ENDPOINT + '/user');
   }
 
   private getDecodedAccessToken(token: string): UserToken {

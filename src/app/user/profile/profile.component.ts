@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { OK_200 } from 'src/app/app.constants';
 import { ServerMessage } from 'src/app/models/server-message.model';
 import { User } from 'src/app/models/user.model';
-import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 import { UtilitiesService } from 'src/app/services/utilities.service';
 import { ConfirmedValidator } from '../user.component';
 
@@ -19,8 +20,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authServiceService: AuthServiceService,
-    private router: Router,
+    private authService: AuthService,
+    private userService: UserService,
     private util: UtilitiesService
   ) {
     this.form = this.formBuilder.group({
@@ -33,7 +34,7 @@ export class ProfileComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.authServiceService.getUser().subscribe(
+    this.userService.getUser().subscribe(
       {
         next: (data) => { 
           this.form.patchValue(data.user);
@@ -69,10 +70,11 @@ export class ProfileComponent implements OnInit {
       // TODO: change server side, it does not verify if existing user/e-mail address is sent in the profile modification object
       // It does not prevent the modification, no error message
 
-    this.authServiceService.updateUser(user).subscribe(
+    this.userService.updateUser(user).subscribe(
       {
         next: (data) => { 
             this.util.handleSuccess('The profile has been successfully saved!')
+            this.form.markAsPristine();
         },
         // TODO: change the server object to produce unified error message object
         // See in the login component why

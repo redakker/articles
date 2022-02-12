@@ -1,5 +1,6 @@
 <div *ngIf="!message">
     <h1>{{article.title}}</h1>
+    <small>{{getDate(article)}}</small>
     <div class="float-right backLink">
         <small>
             <a [routerLink]="['/article']" class="text-secondary">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 import { Article, Articles } from '../models/article.model';
 import { ServerMessage } from '../models/server-message.model';
 import { ArticleService } from '../services/article.service';
@@ -35,6 +36,10 @@ export class ArticleComponent implements OnInit {
 
   getPictureKeyWord(article: Article) {
     return this.util.getPictureKeyWord(article);
+  }
+
+  getDate(article: Article) {
+    return moment.unix(article.updated / 1000).format("YYYY-MM-DD HH:mm:ss");
   }
 
 }

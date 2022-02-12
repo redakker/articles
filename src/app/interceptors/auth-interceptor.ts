@@ -7,6 +7,7 @@ import { API_ENDPOINT, TOKEN_NAME } from "../app.constants";
 export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        req.headers.append('Content-Type', 'application/json');
 
         const userToken = localStorage.getItem(TOKEN_NAME);
         if (this.isProtectedEP(req.url)) {
@@ -33,6 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (endpoint.includes('/profiles')) { return true; }
         if (endpoint.includes('/favorite')) { return true; }
         if (endpoint.includes('/comments')) { return true; }
+        if (endpoint.includes('/articles')) { return true; }
 
         return false;
     }

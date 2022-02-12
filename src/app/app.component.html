@@ -28,10 +28,10 @@
             <a class="nav-link hand" [routerLink]="['/user/profile']"><i class="fa fa-user"></i> Profile</a>
           </li>
           <li class="nav-item" *ngIf="isLoggedin()">
-            <a class="nav-link hand" [routerLink]="['/user/editarticles']"><i class="fa fa-users"></i> Articles</a>
+            <a class="nav-link hand" [routerLink]="['/user/articlelist']"><i class="fa fa-list"></i> Articles</a>
           </li>
           <li class="nav-item" *ngIf="isLoggedin()">
-            <a class="nav-link hand" [routerLink]="['/user/userlist']"><i class="fa fa-users"></i> User list</a>
+            <a class="nav-link hand" [routerLink]="['/user/list']"><i class="fa fa-users"></i> User list</a>
           </li>
           <li class="nav-item" *ngIf="isLoggedin()">
             <a class="nav-link hand" (click)="logout()"><span class="badge badge-danger"><i class="fa fa-sign-out"></i> Logout</span></a>
