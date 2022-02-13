@@ -41,7 +41,7 @@ The project was generated with [Angular CLI](https://github.com/angular/angular-
 **Important**
 To have some initial data please add the `sqlite` database to your server application. You can find it in the `test_database` folder
 It has two test users as well:
-- family at guy doc com / family
+- family at guy dot com / family
 - redman at redman dot hu / pass1
 
 
