@@ -39,8 +39,8 @@ export class ArticleModalComponent implements OnInit {
     this.applyTags(this.article);
   }
 
-  getPictureKeyWord(article: Article) {
-    return this.util.getPictureKeyWord(article);
+  getPictureKeyWord(word: string) {
+    return this.util.getPictureKeyWord({title: word} as Article);
   }
 
   fieldHasError(field: string) {
@@ -52,11 +52,13 @@ export class ArticleModalComponent implements OnInit {
   }
 
   applyTags (article: Article) {
-    for (let tag of article.tagList) {
-      this.tagList.push({
-        display: tag,
-        value: tag
-      });
+    if ( article.tagList) {
+      for (let tag of article.tagList) {
+        this.tagList.push({
+          display: tag,
+          value: tag
+        });
+      }
     }
   }
   tagListToFlat() {

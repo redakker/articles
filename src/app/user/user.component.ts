@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 export function ConfirmedValidator(controlName: string, matchingControlName: string){
   return (formGroup: FormGroup) => {
@@ -23,9 +24,13 @@ export function ConfirmedValidator(controlName: string, matchingControlName: str
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+
+    if (this.router.url === '/user') {
+      this.router.navigate(['/user/login']);
+    }
   }
 
 }

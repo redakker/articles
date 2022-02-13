@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CUT_BODY_AFTER_BIO } from 'src/app/app.constants';
 import { AreYouSureComponent } from 'src/app/modals/are-you-sure/are-you-sure.component';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -67,6 +68,10 @@ export class UserListComponent implements OnInit {
 
   editProfile() {
     this.router.navigate(['/user/profile']);
+  }
+
+  cutText(text: string) {
+    return text.substring(0, CUT_BODY_AFTER_BIO)
   }
 
 }

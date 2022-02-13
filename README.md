@@ -8,6 +8,7 @@
  - create an endpoint whcih allow to get the articles by user
  - server should not allow to modify articles by other users
  - Articles endpoint should not send the "articlesCount", it can get from the article array easily. Article endpoint should send a simple article array
+ - article cards have display issue in 850-1000px with resolution
 
 
 # Articles

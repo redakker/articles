@@ -62,6 +62,7 @@ export class EditArticleComponent implements OnInit {
 
   // User is allowed to see and edit her/his articles only
   filterMyArticles(articles: Articles) {
+    this.articles = [];
     this.authService.getMe().subscribe(
       {
         next: (data) => { 
