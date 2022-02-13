@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -44,7 +43,10 @@ export class UserListComponent implements OnInit {
   deleteUser(user: User) {
     this.userService.deleteUser(user).subscribe(
       {
-        next: (data) => { this.util.handleSuccess('User has been successfully deleted.') },
+        next: (data) => { 
+          this.util.handleSuccess('User has been successfully deleted.'); 
+          // Refresh the user list
+          this.getUsers(); },
         // TODO: change the server object to produce unified error message object
         // See in the login component why
         error: (e) => this.util.handleError(e),
@@ -58,7 +60,6 @@ export class UserListComponent implements OnInit {
 
     modalRef.result.then((res) => {
       this.deleteUser(user);
-      this.getUsers();
     }, (res) => {
       // console.log('User does not want to delete the user. Cancelled');
     });

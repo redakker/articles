@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { CUT_BODY_AFTER } from 'src/app/app.constants';
 import { AreYouSureComponent } from 'src/app/modals/are-you-sure/are-you-sure.component';
 import { ArticleModalComponent } from 'src/app/modals/article-modal/article-modal.component';
-import { Article } from 'src/app/models/article.model';
+import { Article, Articles } from 'src/app/models/article.model';
 import { User } from 'src/app/models/user.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -51,13 +51,33 @@ export class EditArticleComponent implements OnInit {
   getArticles() {
     this.articleService.getArticles().subscribe(
       {
-        next: (data) => { this.articles = data.articles },
+        next: (data) => { this.filterMyArticles(data) },
         // TODO: change the server object to produce unified error message object
         // See in the login component why
         error: (e) => this.util.handleError(e),
         complete: () => {} 
       }
     );
+  }
+
+  // User is allowed to see and edit her/his articles only
+  filterMyArticles(articles: Articles) {
+    this.authService.getMe().subscribe(
+      {
+        next: (data) => { 
+          let me: User = data.user;
+          for (let article of articles.articles){
+            if (article.author.email === me.email) {
+              this.articles.push(article);
+            }
+          }
+        },
+        // TODO: change the server object to produce unified error message object
+        // See in the login component why
+        error: (e) => this.util.handleError(e),
+        complete: () => {}
+      } 
+    )
   }
 
   newArticle() {

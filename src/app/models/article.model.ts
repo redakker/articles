@@ -41,3 +41,9 @@ export interface Comment {
 	body: string;
 	author: User;
 }
+
+// Only for frontend
+export interface Tag {
+	display: string;
+	value: string;
+}

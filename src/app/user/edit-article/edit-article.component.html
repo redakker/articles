@@ -1,8 +1,13 @@
 <div class="container">
     <h2>Article list</h2>
     <p>Here is your articles</p>
-    <button class="btn btn-sm btn-info float-right mb-2" (click)="newArticle()">New Article</button>     
-    <table class="table">
+    <button class="btn btn-sm btn-info float-right mb-2" (click)="newArticle()">New Article</button>
+    
+    <div *ngIf="!articles.length">
+      <display-message [message]="{message: 'You have not written any article yet. Please create one!', statusCode: 50}"></display-message>
+    </div>
+    
+    <table *ngIf="articles.length" class="table">
       <thead>
         <tr>
           <th class="text-info">Title</th>

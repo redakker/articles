@@ -15,23 +15,23 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
         <ul class="navbar-nav float-right ml-auto">
           <li class="nav-item">
-            <a class="nav-link hand" [routerLink]="['/articles']"><i class="fa fa-home"></i> Home</a>
+            <a class="nav-link hand" [routerLink]="['/articles']"><i class="fa fa-home text-success"></i> Home</a>
           </li>
           <li class="nav-item" *ngIf="!isLoggedin()">
-            <a class="nav-link hand" [routerLink]="['/user/login']"><i class="fa fa-user"></i> Login</a>
+            <a class="nav-link hand" [routerLink]="['/user/login']"><i class="fa fa-user text-info"></i> Login</a>
           </li>
           <li class="nav-item" *ngIf="!isLoggedin()">
             <a class="nav-link hand" [routerLink]="['/user/signup']"><span class="badge badge-success"><i class="fa fa-pencil"></i> Sign up</span></a>
           </li>
 
           <li class="nav-item" *ngIf="isLoggedin()">
-            <a class="nav-link hand" [routerLink]="['/user/profile']"><i class="fa fa-user"></i> Profile</a>
+            <a class="nav-link hand" [routerLink]="['/user/profile']"><i class="fa fa-user text-info"></i> Profile</a>
           </li>
           <li class="nav-item" *ngIf="isLoggedin()">
-            <a class="nav-link hand" [routerLink]="['/user/articlelist']"><i class="fa fa-list"></i> Articles</a>
+            <a class="nav-link hand" [routerLink]="['/user/articlelist']"><i class="fa fa-list text-warning"></i> Articles</a>
           </li>
           <li class="nav-item" *ngIf="isLoggedin()">
-            <a class="nav-link hand" [routerLink]="['/user/list']"><i class="fa fa-users"></i> User list</a>
+            <a class="nav-link hand" [routerLink]="['/user/list']"><i class="fa fa-users text-warning"></i> User list</a>
           </li>
           <li class="nav-item" *ngIf="isLoggedin()">
             <a class="nav-link hand" (click)="logout()"><span class="badge badge-danger"><i class="fa fa-sign-out"></i> Logout</span></a>

@@ -14,13 +14,15 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { UserListComponent } from './user/list/user-list.component';
 import { AreYouSureComponent } from './modals/are-you-sure/are-you-sure.component';
 import { ArticleModalComponent } from './modals/article-modal/article-modal.component';
 import { EditArticleComponent } from './user/edit-article/edit-article.component';
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 
 @NgModule({
@@ -47,7 +49,10 @@ import { EditArticleComponent } from './user/edit-article/edit-article.component
     FontAwesomeModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    ToastNoAnimationModule.forRoot()
+    ToastNoAnimationModule.forRoot(),
+    TagInputModule,
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     HttpClient,

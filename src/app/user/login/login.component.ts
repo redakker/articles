@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         next: (data) => { this.authServiceService.storeUser(data.user); this.navigateToProfile(); },
         // TODO: change the server object to produce unified error message object
         // See in the login component why
-        error: (e) => this.util.handleError(e),
+        error: (e) => this.util.handleError(e, "Incorrect username or password!"),
         complete: () => {} 
       }
     );

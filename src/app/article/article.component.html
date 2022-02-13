@@ -10,10 +10,17 @@
         </small>
     </div>
 
-    <img class="card-img-top mb-3" [src]="'https://loremflickr.com/600/200/' + getPictureKeyWord(article)">
+    <img class="card-img mb-3" [src]="'https://loremflickr.com/600/200/' + getPictureKeyWord(article)">
 
     <div>
         <div class="mb-1">{{article.description}}</div>
         <div>{{article.body}}</div>
+    </div>
+
+    <div class="tags">
+        <hr />
+        <div *ngFor="let tag of article.tagList" class="tag float-left">
+            <a href="/article/{{article.slug}}" class="text-secondary">#{{tag}}</a> &nbsp;
+        </div>
     </div>
 </div>
