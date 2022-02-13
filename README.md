@@ -1,20 +1,7 @@
-# TODO
- - unify data objects
- - unify error message
- - introduce user levels
- - introduce NgRx Store
- - user modification endpoint can modify the username/e-mail to an existing one without any error message and prevention. Currently client prevent this action without sending any username/email at modifitation time.
- - allow to modify password for user in the endpoint. Currently the exact string is written into the database. Server side does not encrypt it. In this case the login will be never success after the password modification 
- - create an endpoint whcih allow to get the articles by user
- - server should not allow to modify articles by other users
- - Articles endpoint should not send the "articlesCount", it can get from the article array easily. Article endpoint should send a simple article array
- - article cards have display issue in 850-1000px with resolution
-
-
 # Articles
 
 This project is a frontend for an article server. The software displays the articles of the users who were previously signed up to the system.
-The registartion is easy free. Articles can be published right after the registration.
+The registartion is easy and free. Articles can be published right after the registration.
 
 ## Features
 
@@ -36,8 +23,6 @@ The registartion is easy free. Articles can be published right after the registr
  - users can delete other users from the system. Be aware if a user has been deleted then all user related articles will be deleted as well.
  - user administration is still rudimental, please read the feature ideas in the TODO section 
 
-
-
 After a successful build you can reach the application in your favorite browser on this URL: `http://localhost:4200/`
 See below how to start the application. 
 
@@ -51,8 +36,33 @@ The project was generated with [Angular CLI](https://github.com/angular/angular-
  - run `npm start` or `ng serve` to start the application in development mode.
  - run `ng serve --prod' to start in production mode (currently no diference between the two modes)
 
+**Important**
+To have some initial data please add the `sqlite` database to your server application.
+It has two test users as well:
+- family at guy doc com / family
+- redman at redman dot hu / pass1
+
+
 The web interface of the application is reachable on this URL: `http://localhost:4200/`
 
 ## Running unit tests
 
 Run `ng test` to execute the unit tests.
+
+# TODO
+
+## Known issues
+
+## Possible features
+ - use NgRx Store for better data handling in client side
+ - introduce user levels for better user handling. Currently new registered users can delete others without any restriction
+ - create an endpoint whcih allows to get the articles by user. Currently all articles should be retreived from the server and should filter in client side. Add filter to the server side would be save network bandwith and increase the performance. Especially in case of lot of articles.
+- server should not allow to modify articles by other users. The user level introduction is the prerquisite of this feature
+
+## Bugs
+ - unify data objects: the data structure of the server side objects are different. Sometimes the object is sent out { username: string } sometimes in another format: user: { username: string }
+ - unify error message: same as at the previous point. Server should send an error message in a unified format which fits to a client side object. See the ServerMessage object
+ - user modification endpoint can modify the username/e-mail to an existing one without any error message and prevention. Currently client prevent this action without sending any username/email at modifitation time.
+ - allow to modify password for user in the endpoint. Currently the exact string is written into the database. Server-side does not encrypt it. In this case the login will be never success after the password modification 
+ - Articles endpoint should not send the "articlesCount", it can get from the article array easily. Article endpoint should send a simple article array. It could decrease the data size and mitigate the network traffic
+ - article cards have display issue in 850-1000px with resolution
